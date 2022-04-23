@@ -1,6 +1,7 @@
 package com.tetris.mechanic;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import javafx.scene.paint.Color;
@@ -17,14 +18,25 @@ public class GameData {
     public int kickX = 0;
     public int kickY = 0;
 
+    // Speed of falling
     public int level;
+    // Number of lines cleared
     public int lines;
+    // Number in seconds between dropdown
     public float dropstep;
+    // Number in seconds how long text flash when score increase
     public float flashTextDuration;
+    // How much dropstep & flashTextDuration reduces, in %.
     public float reductionSpeed;
+    // TODO: Settings
+    public float getDefaultReductionSpeed() {
+    	return 0.95f;
+    }
 
     public boolean paused = false;
     public boolean gameOver = false;
+
+	public GameTimer timer;
 
     public TetrisPiece getTile()
     {
@@ -43,7 +55,7 @@ public class GameData {
         level = 1;
         dropstep = 1f;
         flashTextDuration = 2f;
-        reductionSpeed = 0.95f;
+        reductionSpeed = getDefaultReductionSpeed();
         tileOffsetX = GameConstant.maxX / 2;
         tileOffsetY = GameConstant.maxY - 2;
         grid = new ArrayList<List<Color>>();
@@ -58,6 +70,8 @@ public class GameData {
             dropstep *= reductionSpeed;
             flashTextDuration *= reductionSpeed;
             level++;
+
+    		timer.SetDelay(dropstep);
         }
     }
 
@@ -104,6 +118,7 @@ public class GameData {
         dropstep = 1f;
         reductionSpeed = 0.95f;
         flashTextDuration = 2f;
+        reductionSpeed = getDefaultReductionSpeed();
         gameOver = false;
         paused = false;
         grid = new ArrayList<List<Color>>();

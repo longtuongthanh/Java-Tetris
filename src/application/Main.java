@@ -1,5 +1,7 @@
 package application;
 	
+import com.tetris.mechanic.GameMechanic;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -15,6 +17,10 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			
+			GameMechanic mechanic = new GameMechanic(scene);
+			
+			primaryStage.setOnCloseRequest(a -> mechanic.close());
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

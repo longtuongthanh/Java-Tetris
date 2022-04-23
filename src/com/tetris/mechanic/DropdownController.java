@@ -1,22 +1,40 @@
 package com.tetris.mechanic;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 import javafx.scene.paint.Color;
 
-public class DropdownController implements TetrisController {
-	public boolean ClearRow(GameData data)
+public class DropdownController extends TetrisController {
+	public BiConsumer<GameData, List<Integer>> onClearLine;
+	public Consumer<GameData> onGameOver;
+	
+	private boolean ClearRow(GameData data)
     {
         List<List<Color>> grid = data.grid;
 
         int rowCount = 0;
-        for (int i = 0; i < grid.size(); i++)
-            if (!grid.get(i).stream().anyMatch(item -> item == GameConstant.nullColor))
-            {
-                data.ClearRow(i);
-                rowCount++;
-                i--;
-            }
+        
+        List<Integer> rowsToClear = new ArrayList<Integer>(4);
+        {
+	        int i = 0;
+	        for (List<Color> row : grid) {
+	            if (!row.stream().anyMatch(item -> item == GameConstant.nullColor))
+	            {
+	            	rowsToClear.add(i);
+	            }
+	            i++;
+	        }
+        }
+        Collections.reverse(rowsToClear);
+        for (Integer i : rowsToClear) {
+            data.ClearRow(i);
+            rowCount++;
+        }
+        
         int score = 0;
         if (rowCount > 0)
         {
@@ -30,8 +48,8 @@ public class DropdownController implements TetrisController {
             data.score += score;
             data.lines += rowCount;
 
-            // TODO: OnRowClear
-            //app.soundManager.Play(AudioClipEnum.Congrat);
+            if (onClearLine != null)
+            	onClearLine.accept(data, rowsToClear);
         }
 
         return rowCount != 0;
@@ -54,10 +72,10 @@ public class DropdownController implements TetrisController {
                     grid.get(y).set(x, TetrisPiece.tileColor.get(tile.type));
                 else
                 {
+                    if (!data.gameOver && onGameOver != null)
+                    	onGameOver.accept(data);
+                    
                     data.gameOver = true;
-                    // TODO: Notify Game Over
-                    //app.NotifyGameOver();
-                    //SceneManager.LoadScene("MenuScene");
                 }
             }
 
@@ -67,5 +85,8 @@ public class DropdownController implements TetrisController {
 
             data.GetNewTetrisPiece();
         }
+
+    	if (notifyBoardChanged != null)
+    		notifyBoardChanged.accept(data.GridClone());
     }
 }
