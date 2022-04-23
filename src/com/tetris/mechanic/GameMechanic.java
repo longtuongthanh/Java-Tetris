@@ -38,6 +38,8 @@ public class GameMechanic implements AutoCloseable {
 		
 		data.timer = new GameTimer(data.dropstep, timer -> {
 			dropdownMechanic.PushDown(data);
+			if (data.gameOver)
+				data.timer.Stop();
 		});
 		
 		final EventHandler<? super KeyEvent> prevHandler = scene.getOnKeyTyped();
@@ -51,12 +53,19 @@ public class GameMechanic implements AutoCloseable {
 	
 	public void OnPause() {
 		data.paused = true;
+		data.timer.Stop();
 	}
 	public void OnUnpause() {
 		data.paused = false;
+		data.timer.Reset();
 	}
 	@Override
 	public void close() {
 		data.timer.close();
+	}
+	public void OnNewGame() {
+		data.ResetData();
+		if (controlMechanic.notifyBoardChanged != null)
+			controlMechanic.notifyBoardChanged.accept(data.GridClone());
 	}
 }
