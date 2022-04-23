@@ -126,5 +126,6 @@ public class GameData {
             grid.add(NewGridRow());
         TetrisPiece.ResetBag();
         GetNewTetrisPiece();
+        timer.Reset();
     }
 }
