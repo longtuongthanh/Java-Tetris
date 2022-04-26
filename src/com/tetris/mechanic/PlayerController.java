@@ -43,7 +43,7 @@ public class PlayerController extends TetrisController {
 	}
     
     public void OnKeyDown(KeyCode key, GameData data) {
-		if (!data.gameOver && !data.paused)
+		if (data.gameOver || data.paused)
 			return;
     	
 		Function<GameData, Boolean> action = mapKeyToAction.get(key);
@@ -54,17 +54,19 @@ public class PlayerController extends TetrisController {
 		}
 		else
 			changed = false;
-    	
+		
     	if (changed && notifyBoardChanged != null)
-    		notifyBoardChanged.accept(data.GridClone());
+    		notifyBoardChanged.accept(data.GetBoardColor());
     }
     
     private boolean MoveLeft(GameData gameData)
     {
+    	//System.out.print("left");
         return Move(gameData, -1, 0);
     }
     private boolean MoveRight(GameData gameData)
     {
+    	//System.out.print("right");
         return Move(gameData, 1, 0);
     }
     private boolean MoveDown(GameData gameData)

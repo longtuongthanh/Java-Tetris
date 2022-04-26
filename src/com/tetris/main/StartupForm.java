@@ -4,6 +4,8 @@
  */
 package com.tetris.main;
 
+import java.util.function.Consumer;
+
 /**
  *
  * @author Nhan
@@ -16,6 +18,14 @@ public class StartupForm extends javax.swing.JPanel {
     public StartupForm() {
         initComponents();
     }
+    
+    //Long: call out to other classes
+    public Consumer<SaveData> onStartPressed;
+    public Consumer<SaveData> onOptionsPressed;
+    public Consumer<SaveData> onLeaderboardPressed;
+    public Consumer<SaveData> onQuit;
+    public SaveData data;
+    //End Long
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -94,18 +104,32 @@ public class StartupForm extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        
+    	//Long
+    	if (onStartPressed != null)
+        	onStartPressed.accept(data);
+    	//Long
+    	
         this.setVisible(false);
         Tetris.start();
     }//GEN-LAST:event_btnStartActionPerformed
 
     private void btnLearderboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLearderboardActionPerformed
-        this.setVisible(false);
+    	//Long
+    	if (onLeaderboardPressed != null)
+        	onLeaderboardPressed.accept(data);
+    	//Long
+    	
+    	this.setVisible(false);
         Tetris.showLearderboard();
     }//GEN-LAST:event_btnLearderboardActionPerformed
 
     private void btnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitActionPerformed
-        System.exit(0);
+        //Long
+    	if (onQuit != null)
+    		onQuit.accept(data);
+    	//Long
+    	
+    	System.exit(0);
     }//GEN-LAST:event_btnQuitActionPerformed
 
     /**

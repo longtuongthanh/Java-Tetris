@@ -35,7 +35,7 @@ public class GameData {
     }
 
     public boolean paused = false;
-    public boolean gameOver = false;
+    public boolean gameOver = true;
 
 	public GameTimer timer;
 
@@ -104,8 +104,20 @@ public class GameData {
         return row;
     }
     
-    public List<List<Color>> GridClone()
+    public List<List<Color>> GetBoardColor()
     {
+    	List<List<Color>> gridClone = GridClone();
+    	for (int i = 0; i < 4; i++) {
+    		int x = tileOffsetX + _tile.coordX[i];
+    		int y = tileOffsetY + _tile.coordY[i];
+    		
+    		if (GameConstant.IsCoordInBound(x, y))
+    			gridClone.get(y).set(x, TetrisPiece.tileColor.get(_tile.type));
+    	}
+    	return gridClone;
+    }
+    
+    public List<List<Color>> GridClone(){
         return grid.stream().map(
                 item -> new ArrayList<Color>(item)
             ).collect(Collectors.toList());

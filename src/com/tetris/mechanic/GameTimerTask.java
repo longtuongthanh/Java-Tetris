@@ -16,6 +16,10 @@ public class GameTimerTask extends TimerTask{
 		
 		parent.callback.accept(parent);
 		
+		if (parent.canceled) {
+			parent = null;
+			return;
+		}
 		parent.timer.schedule(new GameTimerTask(parent), parent.delay);
 	}
 }

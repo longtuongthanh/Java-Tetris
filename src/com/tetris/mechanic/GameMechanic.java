@@ -28,6 +28,7 @@ public class GameMechanic implements AutoCloseable {
 	}
 	public void SetOnMove(Consumer<GameData> onMove) {
 		controlMechanic.onMove = onMove;
+		//dropdownMechanic.onMove = onMove;
 	}
 	// END CALLING TO OTHER CLASSES
 	
@@ -42,8 +43,8 @@ public class GameMechanic implements AutoCloseable {
 				data.timer.Stop();
 		});
 		
-		final EventHandler<? super KeyEvent> prevHandler = scene.getOnKeyTyped();
-		scene.setOnKeyTyped(ev -> {
+		final EventHandler<? super KeyEvent> prevHandler = scene.getOnKeyPressed();
+		scene.setOnKeyPressed(ev -> {
 			if (prevHandler != null)
 				prevHandler.handle(ev);
 
@@ -66,6 +67,6 @@ public class GameMechanic implements AutoCloseable {
 	public void OnNewGame() {
 		data.ResetData();
 		if (controlMechanic.notifyBoardChanged != null)
-			controlMechanic.notifyBoardChanged.accept(data.GridClone());
+			controlMechanic.notifyBoardChanged.accept(data.GetBoardColor());
 	}
 }

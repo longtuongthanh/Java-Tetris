@@ -17,7 +17,7 @@ public class GameTimer implements AutoCloseable {
 			throw new NullPointerException();
 		this.callback = callback;
 		
-		Reset();
+		//Reset();
 	}
 	
 	public void SetDelay(float delay) {
