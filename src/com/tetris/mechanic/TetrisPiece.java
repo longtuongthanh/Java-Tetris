@@ -127,6 +127,7 @@ public class TetrisPiece implements Cloneable {
     public static void ResetBag()
     {
         currentBag.clear();
+        
         ArrayList<TetrisPiece> temp = new ArrayList<TetrisPiece>();
         
         for (TetrisPieceType item : bag)
@@ -138,6 +139,11 @@ public class TetrisPiece implements Cloneable {
         while (temp.size() > 0) {
         	int i = rng.nextInt(temp.size());
         	currentBag.add(temp.remove(i));
+        }
+        
+        for (TetrisPieceType item : bag)
+        {
+            currentBag.add(new TetrisPiece(item));
         }
     }
 

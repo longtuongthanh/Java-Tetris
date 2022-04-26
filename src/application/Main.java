@@ -1,9 +1,9 @@
 package application;
-
+	
+import com.tetris.mechanic.GameMechanic;
+import javafx.application.Application;
 import javafx.stage.Stage;
-
 import com.tetris.main.StartupForm;
-
 import javafx.application.Application;
 import javafx.embed.swing.SwingNode;
 import javafx.scene.Scene;
