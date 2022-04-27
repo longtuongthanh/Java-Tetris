@@ -11,9 +11,9 @@ public class Board extends JPanel {
     private BufferedImage blocks;
     private final int blockSize = 30;
     private final int boardWidth = 10, boardHeight = 20;
-    private int[][] board = new int[boardHeight][boardWidth];
+    public int[][] board = new int[boardHeight][boardWidth];
 
-    private Shape[] shapes = new Shape[7];
+    private BufferedImage[] shapes = new BufferedImage[7];
 
     // Káº» cÃ¡c Ä‘Æ°á»�ng mÃ u Ä‘en phÃ¢n chia táº¡o thÃ nh Board. (CÃ¡c Ã´ vuÃ´ng Ä‘an nhau áº¥y)
     public void paintComponent(Graphics g) {
@@ -25,39 +25,37 @@ public class Board extends JPanel {
         for (int j = 0; j < boardWidth; j++) {
             g.drawLine(j * blockSize, 0, j * blockSize, boardHeight * blockSize);
         }
+        
+
+        //Long
+        for (int row = 0; row < board.length; row++) {
+            for (int col = 0; col < board[row].length; col++) {
+                if (board[row][col] != 0)
+                    g.drawImage(shapes[board[row][col]], col * blockSize,
+                            row * blockSize, null);
+            }
+        }
+        //Long
     }
 
     public Board() {
         // chia bá»©c áº£nh ColorRainbow thÃ nh 7 block vá»›i 7 mÃ u khÃ¡c nhau
         try {
-            blocks = ImageIO.read(Board.class.getResource("ColorRainbow.png"));
+            blocks = ImageIO.read(Board.class.getResource("/com/tetris/playfield/ColorRainbow.png"));
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
         // CÃ¡c Shape gá»“m 7 hÃ¬nh gá»“m hÃ¬nh chá»¯ O, I, S, Z, L, J, T
-        shapes[0] = new Shape(blocks.getSubimage(0, 0, blockSize, blockSize), new int[][] { { 1, 1, 1, 1 } // I shape
-        }, this, 1);
-        shapes[1] = new Shape(blocks.getSubimage(blockSize, 0, blockSize, blockSize),
-                new int[][] { { 1, 1, 0 }, { 0, 1, 1 } // Z shape
-                }, this, 2);
-        shapes[2] = new Shape(blocks.getSubimage(blockSize * 2, 0, blockSize, blockSize),
-                new int[][] { { 0, 1, 1 }, { 1, 1, 0 } // S shape
-                }, this, 3);
-        shapes[3] = new Shape(blocks.getSubimage(blockSize * 3, 0, blockSize, blockSize),
-                new int[][] { { 1, 1, 1 }, { 0, 0, 1 } // J shape
-                }, this, 4);
-        shapes[4] = new Shape(blocks.getSubimage(blockSize * 4, 0, blockSize, blockSize),
-                new int[][] { { 1, 1, 1 }, { 1, 0, 0 } // L shape
-                }, this, 5);
-        shapes[5] = new Shape(blocks.getSubimage(blockSize * 5, 0, blockSize, blockSize),
-                new int[][] { { 1, 1, 1 }, { 0, 1, 0 } // T shape
-                }, this, 6);
-        shapes[6] = new Shape(blocks.getSubimage(blockSize * 6, 0, blockSize, blockSize),
-                new int[][] { { 1, 1 }, { 1, 1 } // O shape
-                }, this, 7);
-
+        // Long: change meaning: shapes -> the image associated with each block
+        shapes[0] = blocks.getSubimage(0, 0, blockSize, blockSize); // I shape
+        shapes[1] = blocks.getSubimage(blockSize, 0, blockSize, blockSize); // Z shape
+        shapes[2] = blocks.getSubimage(blockSize * 2, 0, blockSize, blockSize); // S shape
+        shapes[3] = blocks.getSubimage(blockSize * 3, 0, blockSize, blockSize); // J shape
+        shapes[4] = blocks.getSubimage(blockSize * 4, 0, blockSize, blockSize); // L shape
+        shapes[5] = blocks.getSubimage(blockSize * 5, 0, blockSize, blockSize); // T shape
+        shapes[6] = blocks.getSubimage(blockSize * 6, 0, blockSize, blockSize); // O shape
     }
 
     public int getBlockSize() {
