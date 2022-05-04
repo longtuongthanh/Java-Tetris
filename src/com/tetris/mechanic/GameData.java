@@ -107,7 +107,7 @@ public class GameData {
     public List<List<Color>> GetBoardColor()
     {
     	List<List<Color>> gridClone = GridClone();
-    	for (int i = 0; i < 4; i++) {
+    	for (int i = 0; i < _tile.coordX.length; i++) {
     		int x = tileOffsetX + _tile.coordX[i];
     		int y = tileOffsetY + _tile.coordY[i];
     		

@@ -81,7 +81,7 @@ public class TetrisController {
 	@Semi_pureFunction
 	protected boolean CheckFit(List<List<Color>> grid, TetrisPiece tile, int coordX, int coordY)
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < tile.coordX.length; i++)
         {
             int x = tile.coordX[i] + coordX;
             int y = tile.coordY[i] + coordY;

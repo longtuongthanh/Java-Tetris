@@ -64,7 +64,7 @@ public class DropdownController extends TetrisController {
         {
             List<List<Color>> grid = data.grid;
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < tile.coordX.length; i++)
             {
                 int x = data.tileOffsetX + tile.coordX[i];
                 int y = data.tileOffsetY + tile.coordY[i];

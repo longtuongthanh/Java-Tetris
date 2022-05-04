@@ -14,7 +14,7 @@ public class PlayerController extends TetrisController {
 	public static final KeyCode[] keyRight = new KeyCode[] {KeyCode.RIGHT, KeyCode.KP_RIGHT, KeyCode.D};
 	//public static final KeyCode[] keyUp = new KeyCode[] {KeyCode.UP, KeyCode.KP_UP, KeyCode.W};
 	public static final KeyCode[] keyDown = new KeyCode[] {KeyCode.DOWN, KeyCode.KP_DOWN, KeyCode.S};
-	public static final KeyCode[] keyRotateLeft = new KeyCode[] {KeyCode.Q, KeyCode.Z};
+	public static final KeyCode[] keyRotateLeft = new KeyCode[] {KeyCode.Q, KeyCode.Z, KeyCode.UP, KeyCode.KP_UP, KeyCode.W};
 	public static final KeyCode[] keyRotateRight = new KeyCode[] {KeyCode.E, KeyCode.X};
 	
 	private Map<KeyCode, Function<GameData, Boolean>> mapKeyToAction;

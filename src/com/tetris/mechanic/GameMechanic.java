@@ -10,9 +10,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
 public class GameMechanic implements AutoCloseable {
-	public GameData data;
-	public DropdownController dropdownMechanic;
-	public PlayerController controlMechanic;
+	GameData data;
+	DropdownController dropdownMechanic;
+	PlayerController controlMechanic;
 	
 	// CALLING TO OTHER CLASSES
 	public void SetOnNotifyBoardChanged(Consumer<List<List<Color>>> notifyBoardChanged) {

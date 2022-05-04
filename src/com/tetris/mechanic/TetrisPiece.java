@@ -39,7 +39,9 @@ public class TetrisPiece implements Cloneable {
         Z,
         S,
         T,
-        O
+        O,
+        X,					// Ugly piece
+        BOMB,				// 1x1 piece, break 3x3 space.
     }
     
     public TetrisPiece(TetrisPieceType type)
@@ -75,6 +77,14 @@ public class TetrisPiece implements Cloneable {
                 coordX = new int[] { 1, 1, 0, 0 };
                 coordY = new int[] { 1, 0, 0, 1 };
                 break;
+			case BOMB:
+				coordX = new int[] { 0 };
+				coordY = new int[] { 0 };
+				break;
+			case X:
+				coordX = new int[] { 0, 1, 1, -1, -1 };
+				coordY = new int[] { 0, 1, -1, 1, -1 };
+				break;
         }
     }
     public void RotateUpToLeft()
@@ -91,7 +101,7 @@ public class TetrisPiece implements Cloneable {
             return;
 
         // invert X axis
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < coordX.length; i++)
             coordX[i] = -coordX[i];
     }
     public void RotateUpToRight()
@@ -108,7 +118,7 @@ public class TetrisPiece implements Cloneable {
             return;
 
         // invert Y axis
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < coordY.length; i++)
             coordY[i] = -coordY[i];
     }
 
@@ -120,6 +130,9 @@ public class TetrisPiece implements Cloneable {
         }
 
         TetrisPiece result = currentBag.removeFirst();
+        
+        if (result == null)
+        	System.out.println("null");
 
         return result;
     }
@@ -140,11 +153,12 @@ public class TetrisPiece implements Cloneable {
         	int i = rng.nextInt(temp.size());
         	currentBag.add(temp.remove(i));
         }
-        
+        /*
         for (TetrisPieceType item : bag)
         {
             currentBag.add(new TetrisPiece(item));
         }
+        //*/
     }
 
     public Object Clone()
@@ -158,5 +172,9 @@ public class TetrisPiece implements Cloneable {
     	} catch(Exception e) {
     		return null;
     	}
+    }
+    
+    public void AddTetrisPieceToBag(TetrisPieceType type) {
+    	currentBag.addFirst(new TetrisPiece(type));
     }
 }
