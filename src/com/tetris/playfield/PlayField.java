@@ -20,8 +20,8 @@ public class PlayField extends GridPane {
 			for (int j = 0; j < GameConstant.maxX; j++) {
 				Rectangle tile = new Rectangle();
 				
-				tile.setHeight(10);
-				tile.setWidth(10);
+				tile.setHeight(20);
+				tile.setWidth(20);
 				
 				tile.setFill(GameConstant.nullColor);
 				

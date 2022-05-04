@@ -30,7 +30,7 @@ public class Main extends Application {
 	        SwingNode cmp = new SwingNode();
 	        cmp.setContent(main);
 	        root.setCenter(cmp);
-			Scene scene = new Scene(root,400,400);
+			Scene scene = new Scene(root,400,600);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
