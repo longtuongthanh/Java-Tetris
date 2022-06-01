@@ -15,7 +15,9 @@ public class TetrisPiece implements Cloneable {
         TetrisPieceType.J,
         TetrisPieceType.S,
         TetrisPieceType.T,
-        TetrisPieceType.Z
+        TetrisPieceType.Z,
+        TetrisPieceType.X,
+        TetrisPieceType.BOMB
     };
     public static Deque<TetrisPiece> currentBag = new LinkedList<TetrisPiece>();
     public static final Map<TetrisPieceType, Color> tileColor;

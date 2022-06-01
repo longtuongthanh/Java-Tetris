@@ -26,7 +26,8 @@ public class GameTimer implements AutoCloseable {
 	}
 	
 	public void Stop() {
-		timer.cancel();
+		if (timer != null)
+			timer.cancel();
 		canceled = true;
 	}
 	
