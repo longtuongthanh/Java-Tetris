@@ -4,6 +4,11 @@
  */
 package tetris;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -13,20 +18,36 @@ import javax.swing.table.DefaultTableModel;
 public class LearderBoardForm extends javax.swing.JFrame {
 
     private DefaultTableModel tm;
-    
+    Connection conn;
     /**
      * Creates new form LearderBoardForm
      */
     public LearderBoardForm() {
         initComponents();
-        initTableData();
+        
+        String url = "jdbc:mysql://localhost/tetris";
+        String user = "root";
+        String password ="";
+        try {
+            conn = DriverManager.getConnection(url, user, password);
+        } catch (Exception e) {
+            System.out.println("Error: "+e.getMessage());
+        }
+        String sql = "select * from leaderboard order by Score desc";
+        try {
+            PreparedStatement pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            DefaultTableModel model = (DefaultTableModel)tblLearderBoard.getModel();
+            model.setRowCount(0);
+            while (rs.next()) {                
+                model.addRow(new String[]{rs.getString(1),rs.getString(2)});
+            }
+        } catch (Exception e) {
+            System.out.println("Error: "+e.getMessage());
+        }
     }
     
-    private void initTableData(){
-        tm = (DefaultTableModel) learderboard.getModel();
-        
-        
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,7 +60,7 @@ public class LearderBoardForm extends javax.swing.JFrame {
 
         btnMainMenu = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        learderboard = new javax.swing.JTable();
+        tblLearderBoard = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -51,7 +72,7 @@ public class LearderBoardForm extends javax.swing.JFrame {
             }
         });
 
-        learderboard.setModel(new javax.swing.table.DefaultTableModel(
+        tblLearderBoard.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -67,7 +88,7 @@ public class LearderBoardForm extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(learderboard);
+        jScrollPane1.setViewportView(tblLearderBoard);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,13 +126,6 @@ public class LearderBoardForm extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     
-    public void addPlayer(String playerName, int score){
-        tm.addRow(new Object[] {playerName,score});
-        
-        this.setVisible(true);
-        
-    }
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -147,6 +161,6 @@ public class LearderBoardForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMainMenu;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable learderboard;
+    private javax.swing.JTable tblLearderBoard;
     // End of variables declaration//GEN-END:variables
 }
