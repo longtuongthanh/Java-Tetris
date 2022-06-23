@@ -58,7 +58,7 @@ public class StartupForm extends javax.swing.JPanel {
             }
         });
 
-        lbIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tetris/main/Tetris resize.png"))); // NOI18N
+        lbIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/Tetris resize.png"))); // NOI18N
         lbIcon.setText("Icon");
 
         btnOption.setText("Option");

@@ -3,12 +3,14 @@ package com.tetris.mechanic;
 import java.util.*;
 import java.util.function.Consumer;
 
+import com.application.TetrisPieceType;
+
 import application.GameConstant;
 import javafx.scene.paint.Color;
 
 public class TetrisController {
 	public Consumer<GameData> onMove;
-	public Consumer<List<List<Color>>> notifyBoardChanged;
+	public Consumer<List<List<TetrisPieceType>>> notifyBoardChanged;
 	@Semi_pureFunction
 	protected boolean Move(GameData data, int offsetX, int offsetY)
     {
@@ -79,7 +81,7 @@ public class TetrisController {
     }
 
 	@Semi_pureFunction
-	protected boolean CheckFit(List<List<Color>> grid, TetrisPiece tile, int coordX, int coordY)
+	protected boolean CheckFit(List<List<TetrisPieceType>> grid, TetrisPiece tile, int coordX, int coordY)
     {
         for (int i = 0; i < tile.coordX.length; i++)
         {
@@ -87,7 +89,7 @@ public class TetrisController {
             int y = tile.coordY[i] + coordY;
 
             if (!(0 <= x && x < GameConstant.maxX && 0 <= y) ||		          					// If not in bound, upper limit notwithstanding
-                ((y < GameConstant.maxY) && grid.get(y).get(x) != GameConstant.nullColor))     	// or tile occupied
+                ((y < GameConstant.maxY) && grid.get(y).get(x) != null))     	// or tile occupied
                 return false;
         }
         return true;

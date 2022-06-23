@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
+import com.application.TetrisPieceType;
+
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
@@ -15,7 +17,7 @@ public class GameMechanic implements AutoCloseable {
 	PlayerController controlMechanic;
 	
 	// CALLING TO OTHER CLASSES
-	public void SetOnNotifyBoardChanged(Consumer<List<List<Color>>> notifyBoardChanged) {
+	public void SetOnNotifyBoardChanged(Consumer<List<List<TetrisPieceType>>> notifyBoardChanged) {
 		controlMechanic.notifyBoardChanged = notifyBoardChanged;
 		dropdownMechanic.notifyBoardChanged = notifyBoardChanged;
 	}

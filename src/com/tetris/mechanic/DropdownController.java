@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
+import com.application.TetrisPieceType;
+
 import application.GameConstant;
 import javafx.scene.paint.Color;
 
@@ -15,15 +17,15 @@ public class DropdownController extends TetrisController {
 	
 	private boolean ClearRow(GameData data)
     {
-        List<List<Color>> grid = data.grid;
+        List<List<TetrisPieceType>> grid = data.grid;
 
         int rowCount = 0;
         
         List<Integer> rowsToClear = new ArrayList<Integer>(4);
         {
 	        int i = 0;
-	        for (List<Color> row : grid) {
-	            if (!row.stream().anyMatch(item -> item == GameConstant.nullColor))
+	        for (List<TetrisPieceType> row : grid) {
+	            if (!row.stream().anyMatch(item -> item == null))
 	            {
 	            	rowsToClear.add(i);
 	            }
@@ -62,15 +64,15 @@ public class DropdownController extends TetrisController {
 
         if (!Move(data, 0, -1))
         {
-            List<List<Color>> grid = data.grid;
+            List<List<TetrisPieceType>> grid = data.grid;
 
             for (int i = 0; i < tile.coordX.length; i++)
             {
                 int x = data.tileOffsetX + tile.coordX[i];
                 int y = data.tileOffsetY + tile.coordY[i];
 
-                if (GameConstant.IsCoordInBound(x, y) && (grid.get(y).get(x) == GameConstant.nullColor))
-                    grid.get(y).set(x, TetrisPiece.tileColor.get(tile.type));
+                if (GameConstant.IsCoordInBound(x, y) && (grid.get(y).get(x) == null))
+                    grid.get(y).set(x, tile.type);
                 else
                 {
                     if (!data.gameOver && onGameOver != null)

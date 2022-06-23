@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.application.TetrisPieceType;
+
 import application.GameConstant;
 import javafx.scene.paint.Color;
 
 public class GameData {
-	public List<List<Color>> grid;
+	public List<List<TetrisPieceType>> grid;
     public int score;
 
     private TetrisPiece _tile;
@@ -59,7 +61,7 @@ public class GameData {
         reductionSpeed = getDefaultReductionSpeed();
         tileOffsetX = GameConstant.maxX / 2;
         tileOffsetY = GameConstant.maxY - 2;
-        grid = new ArrayList<List<Color>>();
+        grid = new ArrayList<List<TetrisPieceType>>();
         for (int i = 0; i < GameConstant.maxY; i++)
             grid.add(NewGridRow());
     }
@@ -96,30 +98,30 @@ public class GameData {
         grid.add(NewGridRow());
     }
 
-    private List<Color> NewGridRow()
+    private List<TetrisPieceType> NewGridRow()
     {
-        List<Color> row = new ArrayList<Color>();
+        List<TetrisPieceType> row = new ArrayList<TetrisPieceType>();
         for (int j = 0; j < GameConstant.maxX; j++)
-            row.add(GameConstant.nullColor);
+            row.add(null);
         return row;
     }
     
-    public List<List<Color>> GetBoardColor()
+    public List<List<TetrisPieceType>> GetBoardColor()
     {
-    	List<List<Color>> gridClone = GridClone();
+    	List<List<TetrisPieceType>> gridClone = GridClone();
     	for (int i = 0; i < _tile.coordX.length; i++) {
     		int x = tileOffsetX + _tile.coordX[i];
     		int y = tileOffsetY + _tile.coordY[i];
     		
     		if (GameConstant.IsCoordInBound(x, y))
-    			gridClone.get(y).set(x, TetrisPiece.tileColor.get(_tile.type));
+    			gridClone.get(y).set(x, _tile.type);
     	}
     	return gridClone;
     }
     
-    public List<List<Color>> GridClone(){
+    public List<List<TetrisPieceType>> GridClone(){
         return grid.stream().map(
-                item -> new ArrayList<Color>(item)
+                item -> new ArrayList<TetrisPieceType>(item)
             ).collect(Collectors.toList());
     }
 
@@ -134,7 +136,7 @@ public class GameData {
         reductionSpeed = getDefaultReductionSpeed();
         gameOver = false;
         paused = false;
-        grid = new ArrayList<List<Color>>();
+        grid = new ArrayList<List<TetrisPieceType>>();
         for (int i = 0; i < GameConstant.maxY; i++)
             grid.add(NewGridRow());
         TetrisPiece.ResetBag();
