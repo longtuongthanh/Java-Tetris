@@ -4,13 +4,14 @@
  */
 package com.tetris.main;
 
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Nhan
  */
-public class LearderBoardForm extends javax.swing.JFrame {
+public class LearderBoardForm extends JPanel {
 
     private DefaultTableModel tm;
     
@@ -41,8 +42,8 @@ public class LearderBoardForm extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         learderboard = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
+        //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        //setResizable(false);
 
         btnMainMenu.setText("Main Menu");
         btnMainMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -69,8 +70,8 @@ public class LearderBoardForm extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(learderboard);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -92,13 +93,14 @@ public class LearderBoardForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pack();
-        setLocationRelativeTo(null);
+        //pack();
+        //setLocationRelativeTo(null);
+        revalidate();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMainMenuActionPerformed
         this.setVisible(false);
-        Tetris.showStartup();
+        Tetris.Inst().showStartup();
     }//GEN-LAST:event_btnMainMenuActionPerformed
 
     /**

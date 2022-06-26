@@ -1,33 +1,54 @@
 package com.tetris.main;
 
+import java.util.function.Consumer;
+
 import javax.swing.JOptionPane;
 
+import javafx.embed.swing.SwingNode;
+
 public class Tetris {
-    private static StartupForm sf;
-    private static LearderBoardForm lf;
+    //Long: call out to other classes
+    public Consumer<SaveData> onStartPressed;
+    public Consumer<SaveData> onOptionsPressed;
+    public Consumer<SaveData> onLeaderboardPressed;
+    public Consumer<SaveData> onQuit;
+    public SaveData data;
+    //End Long
+
+    public StartupForm sf;
+    private OptionForm of;
+    private LearderBoardForm lf;
+    public SelectGameForm sgf;
+    public SwingNode parent;
     
-    public static void start(){
+    private static Tetris _inst;
+    public static Tetris Inst() {
+    	if (_inst == null)
+    		_inst = new Tetris();
+    	return _inst;
+    }
+    
+    public void start(){
 //        su kien khi nhan nut start, chuyen den game form
     }
     
-    public static void showLearderboard(){
-        lf.setVisible(true);
+    public void showLearderboard(){
+    		lf = new LearderBoardForm();
+        parent.setContent(lf);
     }
     
-    public static void showStartup(){
-        sf.setVisible(true);
+    public void showOption(){
+    		of = new OptionForm();
+        parent.setContent(of);
     }
     
-    public static void main(String[] args) {
-        
-        java.awt.EventQueue.invokeLater(new Runnable(){
-            public void run(){
-                sf = new StartupForm();
-                lf = new LearderBoardForm();
-
-                sf.setVisible(true);
-            }
-        });        
+    public void showStartup(){
+    		sf = new StartupForm();
+        parent.setContent(sf);
     }
     
+    public void showSelectGame(){
+    		sgf = new SelectGameForm();
+        parent.setContent(sgf);    
+    }    
 }

@@ -7,6 +7,8 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import com.tetris.main.StartupForm;
+import com.tetris.main.Tetris;
+
 import javafx.embed.swing.SwingNode;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -24,11 +26,11 @@ public class Main extends Application {
                     break;
                 }
             }
-	        StartupForm main = new StartupForm();
 	        
 			//End Nhan
 	        SwingNode cmp = new SwingNode();
-	        cmp.setContent(main);
+	        Tetris.Inst().parent = cmp;
+	        Tetris.Inst().showStartup();
 	        root.setCenter(cmp);
 			Scene scene = new Scene(root,400,600);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -38,7 +40,7 @@ public class Main extends Application {
 			GameMechanic mechanic = new GameMechanic(scene);
 			PlayField field = new PlayField();
 			
-			main.onStartPressed = data ->{
+			Tetris.Inst().onStartPressed = data ->{
 				Platform.runLater(()->{
 					root.setCenter(field);
 					mechanic.OnNewGame();

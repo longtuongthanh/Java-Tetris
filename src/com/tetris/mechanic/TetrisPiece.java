@@ -2,6 +2,8 @@ package com.tetris.mechanic;
 
 import java.util.*;
 
+import com.application.TetrisPieceType;
+
 import javafx.scene.paint.Color;
 
 public class TetrisPiece implements Cloneable {
@@ -15,35 +17,12 @@ public class TetrisPiece implements Cloneable {
         TetrisPieceType.J,
         TetrisPieceType.S,
         TetrisPieceType.T,
-        TetrisPieceType.Z
+        TetrisPieceType.Z,
+        //TetrisPieceType.X,
+        //TetrisPieceType.BOMB
     };
     public static Deque<TetrisPiece> currentBag = new LinkedList<TetrisPiece>();
-    public static final Map<TetrisPieceType, Color> tileColor;
-    static {
-    	tileColor = new HashMap<TetrisPieceType, Color>();
 
-        tileColor.put(TetrisPieceType.I, new Color(1,0,0.5f,1));
-        tileColor.put(TetrisPieceType.L, new Color(1,0,1,1));
-        tileColor.put(TetrisPieceType.O, new Color(1,0,0,1));
-        tileColor.put(TetrisPieceType.J, new Color(1,1,0,1));
-        tileColor.put(TetrisPieceType.S, new Color(0,1,1,1));
-        tileColor.put(TetrisPieceType.T, new Color(0,0,1,1));
-        tileColor.put(TetrisPieceType.Z, new Color(0,1,0,1));
-    }
-
-    public enum TetrisPieceType
-    {
-        I,
-        L,
-        J,
-        Z,
-        S,
-        T,
-        O,
-        X,					// Ugly piece
-        BOMB,				// 1x1 piece, break 3x3 space.
-    }
-    
     public TetrisPiece(TetrisPieceType type)
     {
         this.type = type;
