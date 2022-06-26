@@ -6,6 +6,8 @@ import com.tetris.playfield.PlayField;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
+
+import com.tetris.gamescene.GameScene;
 import com.tetris.main.StartupForm;
 import com.tetris.main.Tetris;
 
@@ -38,7 +40,7 @@ public class Main extends Application {
 			primaryStage.show();
 			//Long
 			GameMechanic mechanic = new GameMechanic(scene);
-			PlayField field = new PlayField();
+			GameScene field = new GameScene();
 			
 			Tetris.Inst().onStartPressed = data ->{
 				Platform.runLater(()->{
@@ -47,8 +49,30 @@ public class Main extends Application {
 				});
 			};
 			
-			mechanic.SetOnNotifyBoardChanged(grid -> field.onUpdate(grid));
+			mechanic.SetOnNotifyBoardChanged(data -> {
+				Platform.runLater(() -> field.OnUpdate(data));
+			});
 			//mechanic.SetOnMove(data->System.out.println(data.tileOffsetX + " " + data.tileOffsetY));
+			mechanic.onPause = data -> {
+				Platform.runLater(() -> field.OnPause(data));
+			};
+			mechanic.onUnpause = data -> {
+				Platform.runLater(() -> field.OnUnpause());
+			};
+			mechanic.SetOnGameOver(data -> {
+				Platform.runLater(() -> field.OnPause(data));
+			});
+			field.unpause = item -> mechanic.OnUnpause();
+			field.restart = item -> mechanic.OnNewGame();
+			
+			field.exitToMenu = item -> {
+				Platform.runLater(()->{
+					root.setCenter(cmp);
+
+			        Tetris.Inst().showStartup();
+					mechanic.OnNewGame();
+				});
+			};
 			
 			primaryStage.setOnCloseRequest(a -> mechanic.close());
 			

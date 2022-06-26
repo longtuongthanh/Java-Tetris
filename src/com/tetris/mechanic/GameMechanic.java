@@ -17,7 +17,8 @@ public class GameMechanic implements AutoCloseable {
 	PlayerController controlMechanic;
 	
 	// CALLING TO OTHER CLASSES
-	public void SetOnNotifyBoardChanged(Consumer<List<List<TetrisPieceType>>> notifyBoardChanged) {
+	public Consumer<GameData> onPause, onUnpause;
+	public void SetOnNotifyBoardChanged(Consumer<GameData> notifyBoardChanged) {
 		controlMechanic.notifyBoardChanged = notifyBoardChanged;
 		dropdownMechanic.notifyBoardChanged = notifyBoardChanged;
 	}
@@ -36,7 +37,7 @@ public class GameMechanic implements AutoCloseable {
 	
 	public GameMechanic(Scene scene) {
 		data = new GameData();
-		controlMechanic = new PlayerController();
+		controlMechanic = new PlayerController(this);
 		dropdownMechanic = new DropdownController();
 		
 		data.timer = new GameTimer(data.dropstep, timer -> {
@@ -57,10 +58,14 @@ public class GameMechanic implements AutoCloseable {
 	public void OnPause() {
 		data.paused = true;
 		data.timer.Stop();
+		if (onPause != null)
+			onPause.accept(data);
 	}
 	public void OnUnpause() {
 		data.paused = false;
 		data.timer.Reset();
+		if (onPause != null)
+			onUnpause.accept(data);
 	}
 	@Override
 	public void close() {
@@ -69,6 +74,6 @@ public class GameMechanic implements AutoCloseable {
 	public void OnNewGame() {
 		data.ResetData();
 		if (controlMechanic.notifyBoardChanged != null)
-			controlMechanic.notifyBoardChanged.accept(data.GetBoardColor());
+			controlMechanic.notifyBoardChanged.accept(data);
 	}
 }

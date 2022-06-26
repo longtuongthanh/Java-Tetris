@@ -90,6 +90,6 @@ public class DropdownController extends TetrisController {
         }
 
     	if (notifyBoardChanged != null)
-    		notifyBoardChanged.accept(data.GetBoardColor());
+    		notifyBoardChanged.accept(data);
     }
 }

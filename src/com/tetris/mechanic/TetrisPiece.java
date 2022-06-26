@@ -115,6 +115,13 @@ public class TetrisPiece implements Cloneable {
 
         return result;
     }
+    
+    public static TetrisPiece PeekNextTetrisPiece() {
+    	if (!currentBag.isEmpty()) {
+    		return currentBag.getFirst();
+    	}
+    	return null;
+    }
 
     public static void ResetBag()
     {

@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 
 public class TetrisController {
 	public Consumer<GameData> onMove;
-	public Consumer<List<List<TetrisPieceType>>> notifyBoardChanged;
+	public Consumer<GameData> notifyBoardChanged;
 	@Semi_pureFunction
 	protected boolean Move(GameData data, int offsetX, int offsetY)
     {
