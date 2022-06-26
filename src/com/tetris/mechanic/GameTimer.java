@@ -35,6 +35,8 @@ public class GameTimer implements AutoCloseable {
 		timer = new Timer();
 		task = new GameTimerTask(this);
 		timer.schedule(task, this.delay);
+
+		canceled = false;
 	}
 
 	@Override

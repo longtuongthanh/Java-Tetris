@@ -63,14 +63,17 @@ public class Main extends Application {
 				Platform.runLater(() -> field.OnPause(data));
 			});
 			field.unpause = item -> mechanic.OnUnpause();
-			field.restart = item -> mechanic.OnNewGame();
-			
+			field.restart = item -> {
+				mechanic.OnNewGame();
+				field.OnUnpause();
+			};
 			field.exitToMenu = item -> {
 				Platform.runLater(()->{
 					root.setCenter(cmp);
 
 			        Tetris.Inst().showStartup();
-					mechanic.OnNewGame();
+
+					field.OnUnpause();
 				});
 			};
 			

@@ -11,6 +11,7 @@ import javafx.scene.paint.Color;
 
 public class GameData {
 	public List<List<TetrisPieceType>> grid;
+	TetrisPiece next;
     public int score;
 
     private TetrisPiece _tile;
@@ -64,6 +65,7 @@ public class GameData {
         grid = new ArrayList<List<TetrisPieceType>>();
         for (int i = 0; i < GameConstant.maxY; i++)
             grid.add(NewGridRow());
+        GetNewTetrisPiece();
     }
     
     public void SpeedUp()
@@ -86,10 +88,14 @@ public class GameData {
 
     public void GetNewTetrisPiece()
     {
-        _tile = TetrisPiece.GetNewTetrisPiece();
+        _tile = next;
+        next = TetrisPiece.GetNewTetrisPiece();
         tileOffsetX = GameConstant.maxX / 2;
         tileOffsetY = GameConstant.maxY - 2;
         ResetKick();
+    }
+    public static TetrisPiece PeekNextTetrisPiece() {
+    	return TetrisPiece.PeekNextTetrisPiece();
     }
 
     public void ClearRow(int index)
@@ -142,5 +148,6 @@ public class GameData {
         TetrisPiece.ResetBag();
         GetNewTetrisPiece();
         timer.Reset();
+        GetNewTetrisPiece();
     }
 }

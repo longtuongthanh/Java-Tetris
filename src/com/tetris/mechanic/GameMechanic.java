@@ -56,12 +56,15 @@ public class GameMechanic implements AutoCloseable {
 	}
 	
 	public void OnPause() {
+
+		System.out.println("pause");
 		data.paused = true;
 		data.timer.Stop();
 		if (onPause != null)
 			onPause.accept(data);
 	}
 	public void OnUnpause() {
+		System.out.println("unpause");
 		data.paused = false;
 		data.timer.Reset();
 		if (onPause != null)

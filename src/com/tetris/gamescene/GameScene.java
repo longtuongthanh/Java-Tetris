@@ -23,7 +23,7 @@ public class GameScene extends StackPane {
 	ImageView blur;
 	static Image bluring = new Image("/resource/Darken.png", true);
 	static Image notBluring = new Image("/resource/Darken.png", true);
-	GridPane pauseMenu;
+	public Node pauseMenu;
 	public Consumer<GameData> unpause;
 	public Consumer<GameData> restart;
 	public Consumer<GameData> exitToMenu;
@@ -39,6 +39,8 @@ public class GameScene extends StackPane {
 		gameplay.setRight(makeRight());
 		
 		blur = new ImageView();
+		blur.setFitHeight(600);
+		blur.setFitWidth(400);
 		blur.setImage(null);
 		
 		this.getChildren().add(gameplay);
@@ -97,47 +99,33 @@ public class GameScene extends StackPane {
 		return left;
 	}
 	
-	private GridPane makePauseMenu(boolean isGameOver) {
+	private Node makePauseMenu(boolean isGameOver) {
 		GridPane result = new GridPane();
-		
-		FlowPane unpausePane = new FlowPane();
-		unpausePane.setVgap(20);
-		unpausePane.setAlignment(Pos.CENTER);
-		
+		result.setVgap(20);
+		result.setAlignment(Pos.CENTER);
+				
 		Button unpause = new Button("Unpause");
 		unpause.setOnAction(e -> {
 			if (this.unpause != null)
 				this.unpause.accept(null);
 		});
-		unpausePane.getChildren().add(unpause);
 		
 		Button retry = new Button("Retry");
 		retry.setOnAction(e -> {
-			this.OnUnpause();
-			if (restart != null)
+			if (this.restart != null)
 				this.restart.accept(null);
 		});
-		FlowPane retryPane = new FlowPane();
-		retryPane.setVgap(20);
-		retryPane.setAlignment(Pos.CENTER);
-		retryPane.getChildren().add(retry);
-		
 
 		Button toMenu = new Button("Return to menu");
 		toMenu.setOnAction(e -> {
-			this.OnUnpause();
-			if (exitToMenu != null)
+			if (this.exitToMenu != null)
 				this.exitToMenu.accept(null);
 		});
-		FlowPane toMenuPane = new FlowPane();
-		toMenuPane.setVgap(20);
-		toMenuPane.setAlignment(Pos.CENTER);
-		toMenuPane.getChildren().add(toMenuPane);
 		
 		if (!isGameOver)
-			result.add(unpausePane, 0, 0);
-		result.add(retryPane, 0, 1);
-		result.add(toMenuPane, 0, 2);
+			result.add(unpause, 0, 0);
+		result.add(retry, 0, 1);
+		result.add(toMenu, 0, 2);
 		
 		return pauseMenu = result; 
 	}
