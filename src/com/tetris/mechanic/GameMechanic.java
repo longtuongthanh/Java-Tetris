@@ -24,7 +24,11 @@ public class GameMechanic implements AutoCloseable {
 		dropdownMechanic.notifyBoardChanged = notifyBoardChanged;
 	}
 	public void SetOnGameOver(Consumer<GameData> onGameOver) {
-		dropdownMechanic.onGameOver = onGameOver;
+		dropdownMechanic.onGameOver = (data)->{
+			Sound.Inst().SetPlaybackRate(Sound.initialRate);
+			if (onGameOver != null)
+				onGameOver.accept(data);
+		};
 	}
 	// outputs game data and list of lines cleared
 	public void SetOnClearLine(BiConsumer<GameData, List<Integer>> onClearLine) {
@@ -80,6 +84,7 @@ public class GameMechanic implements AutoCloseable {
 	}
 	public void OnNewGame() {
 		Sound.Inst().SetSong(1);
+		Sound.Inst().SetPlaybackRate(Sound.initialRate);
 		data.ResetData();
 		if (controlMechanic.notifyBoardChanged != null)
 			controlMechanic.notifyBoardChanged.accept(data);

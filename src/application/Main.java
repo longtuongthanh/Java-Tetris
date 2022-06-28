@@ -21,7 +21,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			//Sound.Inst().SetSong(3);
 			Sound.Inst().Play();
+			
 			
 			BorderPane root = new BorderPane();
 			//Nhan

@@ -39,17 +39,17 @@ public class OptionForm extends javax.swing.JPanel {
         jSlider1.addChangeListener(e -> {
         	int value = jSlider1.getValue();
         	
-        	System.out.println(value);
         	Sound.Inst().SetVolumn(0, value / 100.0d);
         	Sound.Inst().SetVolumn(1, value / 100.0d);
         });
-        jSlider1.addChangeListener(e -> {
-        	int value = jSlider1.getValue();
+        jSlider2.addChangeListener(e -> {
+        	int value = jSlider2.getValue();
         	
-        	System.out.println(value);
         	Sound.Inst().SetVolumn(3, value / 100.0d);
         	Sound.Inst().SetVolumn(2, value / 100.0d);
         });
+        jSlider2.setValue((int) (Sound.Inst().volumns[2] * 100));
+        jSlider1.setValue((int) (Sound.Inst().volumns[0] * 100));
 
         //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         //setResizable(false);

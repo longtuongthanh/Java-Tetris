@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.application.TetrisPieceType;
+import com.tetris.playfield.Sound;
 
 import application.GameConstant;
 import javafx.scene.paint.Color;
@@ -77,6 +78,7 @@ public class GameData {
             level++;
 
     		timer.SetDelay(dropstep);
+    		Sound.Inst().SetPlaybackRate(Sound.initialRate / dropstep);
         }
     }
 

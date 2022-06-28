@@ -9,7 +9,6 @@ public class GameTimerTask extends TimerTask{
 	}
 	@Override
 	public void run() {
-		System.out.println('a');
 		if (parent.canceled) {
 			parent = null;
 			return;

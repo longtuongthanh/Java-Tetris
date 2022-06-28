@@ -16,7 +16,7 @@ public class Sound {
 		return _inst;
 	}
 	
-	public static List<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
+	public static Media[] sounds;
 	static {
 		String[] musicFiles = new String[]{
 				"resource/sound/game_over.mp3",
@@ -24,58 +24,84 @@ public class Sound {
 				"resource/sound/rows_completed.mp3",
 				"resource/sound/shape_locked.mp3"
 		};
+		sounds = new Media[musicFiles.length];
 
 		//Media sound = new Media(new File(musicFile).toURI().toString());
 		for (int i = 0; i < musicFiles.length; i++) {
 			Media sound = new Media(new File(musicFiles[i]).toURI().toString());
-			MediaPlayer mediaPlayer = new MediaPlayer(sound);
-			mediaPlayer.setAutoPlay(true);
-			mediaPlayer.stop();
 			
-			sounds.add(mediaPlayer);
+			sounds[i] = sound;
 		}
 	}
 	
 	int currentID;
+	public double[] volumns = new double[sounds.length];
+	double rate = initialRate;
+	public static double initialRate = 0.5;
+	MediaPlayer mediaPlayer;
+	
+	public Sound() {
+		for (int i = 0; i < volumns.length; i++)
+			volumns[i] = 0.5;
+		mediaPlayer = new MediaPlayer(sounds[currentID]);
+		mediaPlayer.setVolume(volumns[currentID]);
+		mediaPlayer.setRate(rate);
+		mediaPlayer.setAutoPlay(true);
+	}
 	
 	// Volumn is [0.0 to 1.0]
 	public void SetVolumn(int id, double volumn) {
-		sounds.get(id).setVolume(volumn);
+		volumns[id] = volumn;
+
+		//System.out.println(volumns[id]);
+		if (id == currentID)
+			mediaPlayer.setVolume(volumn);
 	}
 	
 	public void SetSong(int id) {
 		SetSong(id, true);
 	}
 	public void SetSong(int id, boolean autoplay) {
-		if (id >= sounds.size() || id < 0)
+		if (id >= sounds.length || id < 0)
 			id = 0;
-		sounds.get(currentID).stop();
+		mediaPlayer.stop();
+		mediaPlayer.dispose();
 		currentID = id;
+		
+		mediaPlayer = new MediaPlayer(sounds[currentID]);
+		mediaPlayer.setVolume(volumns[currentID]);
+		mediaPlayer.setRate(rate);
+		mediaPlayer.setAutoPlay(true);
+		
 		if (autoplay)
-			sounds.get(currentID).play();
+			mediaPlayer.play();
 	}
 	
 	// Speed is (0.0 to 8.0]
 	public void SetPlaybackRate(double speed) {
-		for (int i = 0; i < sounds.size(); i++)
-			sounds.get(i).setRate(speed);
+		rate = speed;
+		mediaPlayer.setRate(rate);
 	}
 	
 	public void Pause() {
-		sounds.get(currentID).pause();
+		mediaPlayer.pause();
 	}
 	
 	public void Play() {
-		sounds.get(currentID).play();
+		mediaPlayer.play();
 	}
 	
 	public void Stop() {
-		sounds.get(currentID).stop();
+		mediaPlayer.stop();
 	}
 	
 	public void PlayOnce(int id) {
-		sounds.get(id).setAutoPlay(false);
-		sounds.get(id).play();
-		sounds.get(id).setOnEndOfMedia(() -> sounds.get(id).setAutoPlay(true));
+		MediaPlayer temp = new MediaPlayer(sounds[id]);
+		temp.setVolume(volumns[id]);
+		
+		temp.play();
+		temp.setOnStopped(() -> {
+			temp.dispose();
+		});
 	}
 }
