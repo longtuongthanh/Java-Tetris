@@ -22,7 +22,6 @@ public class GameScene extends StackPane {
 	BorderPane gameplay;
 	ImageView blur;
 	static Image bluring = new Image("/resource/Darken.png", true);
-	static Image notBluring = new Image("/resource/Darken.png", true);
 	public Node pauseMenu;
 	public Consumer<GameData> unpause;
 	public Consumer<GameData> restart;

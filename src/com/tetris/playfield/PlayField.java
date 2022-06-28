@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
+import java.io.File;
 import java.util.*;
 
 import com.application.TetrisPieceType;
@@ -20,14 +21,14 @@ public class PlayField extends GridPane {
 	static {
 		tileImage = new HashMap<TetrisPieceType, Image>();
 		
-		tileImage.put(TetrisPieceType.I, new Image("/resource/I.png", true));
-		tileImage.put(TetrisPieceType.J, new Image("/resource/J.png", true));
-		tileImage.put(TetrisPieceType.L, new Image("/resource/L.png", true));
-		tileImage.put(TetrisPieceType.Z, new Image("/resource/Z.png", true));
-		tileImage.put(TetrisPieceType.O, new Image("/resource/O.png", true));
-		tileImage.put(TetrisPieceType.T, new Image("/resource/T.png", true));
-		tileImage.put(TetrisPieceType.S, new Image("/resource/S.png", true));
-		tileImage.put(null, new Image("/resource/Nothing.png", true));
+		tileImage.put(TetrisPieceType.I, new Image(new File("resource/I.png").toURI().toString(), true));
+		tileImage.put(TetrisPieceType.J, new Image(new File("resource/J.png").toURI().toString(), true));
+		tileImage.put(TetrisPieceType.L, new Image(new File("resource/L.png").toURI().toString(), true));
+		tileImage.put(TetrisPieceType.Z, new Image(new File("resource/Z.png").toURI().toString(), true));
+		tileImage.put(TetrisPieceType.O, new Image(new File("resource/O.png").toURI().toString(), true));
+		tileImage.put(TetrisPieceType.T, new Image(new File("resource/T.png").toURI().toString(), true));
+		tileImage.put(TetrisPieceType.S, new Image(new File("resource/S.png").toURI().toString(), true));
+		tileImage.put(null, new Image(new File("resource/Nothing.png").toURI().toString(), true));
 	}
 	
 	List<List<ImageView>> tileGrid = new ArrayList<List<ImageView>>();

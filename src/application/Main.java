@@ -2,6 +2,7 @@ package application;
 	
 import com.tetris.mechanic.GameMechanic;
 import com.tetris.playfield.PlayField;
+import com.tetris.playfield.Sound;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -20,6 +21,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			Sound.Inst().Play();
+			
 			BorderPane root = new BorderPane();
 			//Nhan
 			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -61,6 +64,7 @@ public class Main extends Application {
 			};
 			mechanic.SetOnGameOver(data -> {
 				Platform.runLater(() -> field.OnPause(data));
+				Sound.Inst().SetSong(0);
 			});
 			field.unpause = item -> mechanic.OnUnpause();
 			field.restart = item -> {

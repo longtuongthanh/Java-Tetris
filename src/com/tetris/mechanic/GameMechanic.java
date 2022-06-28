@@ -5,6 +5,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import com.application.TetrisPieceType;
+import com.tetris.playfield.Sound;
 
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -75,6 +76,7 @@ public class GameMechanic implements AutoCloseable {
 		data.timer.close();
 	}
 	public void OnNewGame() {
+		Sound.Inst().SetSong(1);
 		data.ResetData();
 		if (controlMechanic.notifyBoardChanged != null)
 			controlMechanic.notifyBoardChanged.accept(data);
