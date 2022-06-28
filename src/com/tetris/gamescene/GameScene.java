@@ -6,6 +6,7 @@ import com.tetris.mechanic.GameData;
 import com.tetris.playfield.PlayField;
 
 import application.Main;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -36,6 +37,8 @@ public class GameScene extends StackPane {
 		gameplay.setTop(makeTop());
 		gameplay.setLeft(makeLeft());
 		gameplay.setRight(makeRight());
+
+		BorderPane.setMargin(gameplay, new Insets(30));
 		
 		blur = new ImageView();
 		blur.setFitHeight(600);
@@ -49,8 +52,9 @@ public class GameScene extends StackPane {
 	public void OnUpdate(GameData data) {
 		field.onUpdate(data.GetBoardColor());
 		
-		scoreLabel.setText("Score: " + data.score);
-		levelLabel.setText("Level: " + data.level);
+		scoreLabel.setText(Integer.toString(data.score));
+		levelLabel.setText(Integer.toString(data.level));
+		nextDisplay.SetTetrisPiece(data.next.type);
 	}
 	
 	public void OnPause(GameData data) {
@@ -72,16 +76,9 @@ public class GameScene extends StackPane {
 	
 	Label scoreLabel;
 	Label levelLabel;
+	TetrisDisplay nextDisplay;
 	private Node makeTop() {
-		BorderPane top = new BorderPane();
-		
-		scoreLabel = new Label("Score: 0");
-		scoreLabel.setFont(Font.font("Segoe UI", 30));
-		levelLabel = new Label("Level: 1");
-		levelLabel.setFont(Font.font("Segoe UI", 30));
-		
-		top.setLeft(scoreLabel);
-		top.setRight(levelLabel);
+		GridPane top = new GridPane();
 		
 		return top;
 	}
@@ -89,11 +86,44 @@ public class GameScene extends StackPane {
 	private Node makeRight() {
 		GridPane right = new GridPane();
 		
+		scoreLabel = new Label("000");
+		scoreLabel.setFont(Font.font("Segoe UI", 30));
+		scoreLabel.setAlignment(Pos.TOP_CENTER);
+		levelLabel = new Label("1");
+		levelLabel.setFont(Font.font("Segoe UI", 30));
+		levelLabel.setAlignment(Pos.TOP_CENTER);
+
+		Label scoreText = new Label("Score:");
+		scoreText.setFont(Font.font("Segoe UI", 30));
+		scoreText.setAlignment(Pos.BOTTOM_CENTER);
+		Label nextText = new Label("Next:");
+		nextText.setFont(Font.font("Segoe UI", 30));
+		nextText.setAlignment(Pos.BOTTOM_CENTER);
+		Label levelText = new Label("Level:");
+		levelText.setFont(Font.font("Segoe UI", 30));
+		levelText.setAlignment(Pos.BOTTOM_CENTER);
+		
+		nextDisplay = new TetrisDisplay();
+		
+		right.add(scoreText, 0, 0);
+		right.add(scoreLabel, 0, 1);
+		right.add(nextText, 0, 2);
+		right.add(nextDisplay, 0, 3);
+		right.add(levelText, 0, 4);
+		right.add(levelLabel, 0, 5);
+		
+		scoreText.setMinHeight(100);
+		scoreLabel.setMinHeight(100);
+		nextText.setMinHeight(100);
+		nextDisplay.minHeight(100);
+		levelText.setMinHeight(100);
+		levelLabel.setMinHeight(100);
+		
 		return right;
 	}
 	
 	private Node makeLeft() {
-		GridPane left = new GridPane();
+		BorderPane left = new BorderPane();
 		
 		return left;
 	}
@@ -108,18 +138,21 @@ public class GameScene extends StackPane {
 			if (this.unpause != null)
 				this.unpause.accept(null);
 		});
+		unpause.setAlignment(Pos.CENTER);
 		
 		Button retry = new Button("Retry");
 		retry.setOnAction(e -> {
 			if (this.restart != null)
 				this.restart.accept(null);
 		});
+		retry.setAlignment(Pos.CENTER);
 
 		Button toMenu = new Button("Return to menu");
 		toMenu.setOnAction(e -> {
 			if (this.exitToMenu != null)
 				this.exitToMenu.accept(null);
 		});
+		toMenu.setAlignment(Pos.CENTER);
 		
 		if (!isGameOver)
 			result.add(unpause, 0, 0);

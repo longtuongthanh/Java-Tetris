@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 
 public class DropdownController extends TetrisController {
 	public BiConsumer<GameData, List<Integer>> onClearLine;
+	public Consumer<GameData> onLockTile;
 	public Consumer<GameData> onGameOver;
 	
 	private boolean ClearRow(GameData data)
@@ -85,6 +86,9 @@ public class DropdownController extends TetrisController {
             boolean hasClearedRow = ClearRow(data);
             if (hasClearedRow)
                 data.SpeedUp();
+
+        	if (onLockTile != null)
+        		onLockTile.accept(data);
 
             data.GetNewTetrisPiece();
         }

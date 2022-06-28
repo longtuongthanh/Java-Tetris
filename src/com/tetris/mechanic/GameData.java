@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 
 public class GameData {
 	public List<List<TetrisPieceType>> grid;
-	TetrisPiece next;
+	public TetrisPiece next;
     public int score;
 
     private TetrisPiece _tile;

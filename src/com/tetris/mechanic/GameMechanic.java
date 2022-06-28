@@ -30,6 +30,9 @@ public class GameMechanic implements AutoCloseable {
 	public void SetOnClearLine(BiConsumer<GameData, List<Integer>> onClearLine) {
 		dropdownMechanic.onClearLine = onClearLine;
 	}
+	public void SetOnLockTile(Consumer<GameData> onLockTile) {
+		dropdownMechanic.onLockTile = onLockTile;
+	}
 	public void SetOnMove(Consumer<GameData> onMove) {
 		controlMechanic.onMove = onMove;
 		//dropdownMechanic.onMove = onMove;

@@ -40,8 +40,8 @@ public class PlayField extends GridPane {
 			for (int j = 0; j < GameConstant.maxX; j++) {
 				ImageView tile = new ImageView();
 				
-				tile.setFitHeight(20);
-				tile.setFitWidth(20);
+				tile.setFitHeight(30);
+				tile.setFitWidth(30);
 				tile.setPreserveRatio(true);
 				tile.setSmooth(true);
 				

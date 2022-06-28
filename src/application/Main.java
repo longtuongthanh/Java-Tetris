@@ -55,6 +55,12 @@ public class Main extends Application {
 			mechanic.SetOnNotifyBoardChanged(data -> {
 				Platform.runLater(() -> field.OnUpdate(data));
 			});
+			mechanic.SetOnLockTile(data -> {
+				Platform.runLater(() -> Sound.Inst().PlayOnce(3));
+			});
+			mechanic.SetOnClearLine((data, listInt) -> {
+				Platform.runLater(() -> Sound.Inst().PlayOnce(2));
+			});
 			//mechanic.SetOnMove(data->System.out.println(data.tileOffsetX + " " + data.tileOffsetY));
 			mechanic.onPause = data -> {
 				Platform.runLater(() -> field.OnPause(data));
