@@ -39,9 +39,8 @@ public class Sound {
 	int currentID;
 	
 	// Volumn is [0.0 to 1.0]
-	public void SetVolumn(double volumn) {
-		for (int i = 0; i < sounds.size(); i++)
-			sounds.get(i).setVolume(volumn);
+	public void SetVolumn(int id, double volumn) {
+		sounds.get(id).setVolume(volumn);
 	}
 	
 	public void SetSong(int id) {

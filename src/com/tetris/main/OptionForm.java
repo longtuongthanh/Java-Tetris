@@ -4,6 +4,10 @@
  */
 package com.tetris.main;
 
+import javax.swing.event.ChangeEvent;
+
+import com.tetris.playfield.Sound;
+
 /**
  *
  * @author Nhan
@@ -31,6 +35,21 @@ public class OptionForm extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jSlider1 = new javax.swing.JSlider();
         jSlider2 = new javax.swing.JSlider();
+        
+        jSlider1.addChangeListener(e -> {
+        	int value = jSlider1.getValue();
+        	
+        	System.out.println(value);
+        	Sound.Inst().SetVolumn(0, value / 100.0d);
+        	Sound.Inst().SetVolumn(1, value / 100.0d);
+        });
+        jSlider1.addChangeListener(e -> {
+        	int value = jSlider1.getValue();
+        	
+        	System.out.println(value);
+        	Sound.Inst().SetVolumn(3, value / 100.0d);
+        	Sound.Inst().SetVolumn(2, value / 100.0d);
+        });
 
         //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         //setResizable(false);
