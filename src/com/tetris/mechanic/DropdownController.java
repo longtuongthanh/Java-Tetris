@@ -76,10 +76,10 @@ public class DropdownController extends TetrisController {
                     grid.get(y).set(x, tile.type);
                 else
                 {
-                    if (!data.gameOver && onGameOver != null)
+                    if (!data.gameOver && onGameOver != null) {
+                        data.gameOver = true;
                     	onGameOver.accept(data);
-                    
-                    data.gameOver = true;
+                    }
                 }
             }
 

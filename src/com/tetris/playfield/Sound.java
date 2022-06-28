@@ -7,7 +7,7 @@ import java.util.List;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-public class Sound {
+public class Sound implements AutoCloseable{
 	
 	private static Sound _inst;
 	public static Sound Inst() {
@@ -72,6 +72,7 @@ public class Sound {
 		mediaPlayer.setVolume(volumns[currentID]);
 		mediaPlayer.setRate(rate);
 		mediaPlayer.setAutoPlay(true);
+		mediaPlayer.setOnEndOfMedia(() -> SetSong(currentID, autoplay));
 		
 		if (autoplay)
 			mediaPlayer.play();
@@ -103,5 +104,9 @@ public class Sound {
 		temp.setOnStopped(() -> {
 			temp.dispose();
 		});
+	}
+
+	public void close() {
+		mediaPlayer.dispose();
 	}
 }

@@ -138,26 +138,32 @@ public class GameScene extends StackPane {
 			if (this.unpause != null)
 				this.unpause.accept(null);
 		});
-		unpause.setAlignment(Pos.CENTER);
+		FlowPane pane1 = new FlowPane();
+		pane1.setAlignment(Pos.CENTER);
+		pane1.getChildren().add(unpause);
 		
 		Button retry = new Button("Retry");
 		retry.setOnAction(e -> {
 			if (this.restart != null)
 				this.restart.accept(null);
 		});
-		retry.setAlignment(Pos.CENTER);
+		FlowPane pane2 = new FlowPane();
+		pane2.setAlignment(Pos.CENTER);
+		pane2.getChildren().add(retry);
 
 		Button toMenu = new Button("Return to menu");
 		toMenu.setOnAction(e -> {
 			if (this.exitToMenu != null)
 				this.exitToMenu.accept(null);
 		});
-		toMenu.setAlignment(Pos.CENTER);
+		FlowPane pane3 = new FlowPane();
+		pane3.setAlignment(Pos.CENTER);
+		pane3.getChildren().add(toMenu);
 		
 		if (!isGameOver)
-			result.add(unpause, 0, 0);
-		result.add(retry, 0, 1);
-		result.add(toMenu, 0, 2);
+			result.add(pane1, 0, 0);
+		result.add(pane2, 0, 1);
+		result.add(pane3, 0, 2);
 		
 		return pauseMenu = result; 
 	}

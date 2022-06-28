@@ -110,7 +110,9 @@ public class StartupForm extends javax.swing.JPanel {
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
     	this.setVisible(false);
 
-        Tetris.Inst().showSelectGame();
+    	if (Tetris.Inst().onStartPressed != null)
+    		Tetris.Inst().onStartPressed.accept(Tetris.Inst().data);
+    	//Tetris.Inst().showSelectGame();
     }//GEN-LAST:event_btnStartActionPerformed
 
     private void btnLearderboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLearderboardActionPerformed

@@ -67,9 +67,11 @@ public class Main extends Application {
 			//mechanic.SetOnMove(data->System.out.println(data.tileOffsetX + " " + data.tileOffsetY));
 			mechanic.onPause = data -> {
 				Platform.runLater(() -> field.OnPause(data));
+				Sound.Inst().SetSong(0);
 			};
 			mechanic.onUnpause = data -> {
 				Platform.runLater(() -> field.OnUnpause());
+				Sound.Inst().SetSong(1);
 			};
 			mechanic.SetOnGameOver(data -> {
 				Platform.runLater(() -> field.OnPause(data));
