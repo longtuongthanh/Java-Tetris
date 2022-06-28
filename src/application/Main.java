@@ -7,6 +7,7 @@ import com.tetris.playfield.Sound;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import com.tetris.gamescene.GameScene;
 import com.tetris.main.StartupForm;
@@ -90,7 +91,7 @@ public class Main extends Application {
 			};
 			
 			primaryStage.setOnCloseRequest(a -> mechanic.close());
-			
+			primaryStage.setResizable(false);
 			//End Long
 		} catch(Exception e) {
 			e.printStackTrace();
