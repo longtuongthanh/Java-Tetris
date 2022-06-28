@@ -31,16 +31,16 @@ public class Tetris {
     public void start(){
 //        su kien khi nhan nut start, chuyen den game form
     }
-    
+    public void showOption(){
+		of = new OptionForm();
+    parent.setContent(of);
+    }
     public void showLearderboard(){
     		lf = new LearderBoardForm();
         parent.setContent(lf);
     }
     
-    public void showOption(){
-    		of = new OptionForm();
-        parent.setContent(of);
-    }
+
     
     public void showStartup(){
     		sf = new StartupForm();

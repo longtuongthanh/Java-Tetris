@@ -41,10 +41,13 @@ public class LearderBoardForm extends JPanel {
         btnMainMenu = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         learderboard = new javax.swing.JTable();
+        lbIcon = new javax.swing.JLabel();
+        BackGround = new javax.swing.JLabel();
 
-        //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        //setResizable(false);
+        setPreferredSize(new java.awt.Dimension(400, 600));
 
+        btnMainMenu.setBackground(new java.awt.Color(255, 153, 102));
+        btnMainMenu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnMainMenu.setText("Main Menu");
         btnMainMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,6 +55,8 @@ public class LearderBoardForm extends JPanel {
             }
         });
 
+        learderboard.setBackground(new java.awt.Color(204, 255, 255));
+        learderboard.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         learderboard.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -68,34 +73,47 @@ public class LearderBoardForm extends JPanel {
                 return canEdit [columnIndex];
             }
         });
+        learderboard.setToolTipText("");
         jScrollPane1.setViewportView(learderboard);
+
+        lbIcon.setForeground(new java.awt.Color(255, 255, 255));
+        lbIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("Tetris resize.png"))); // NOI18N
+
+        BackGround.setForeground(new java.awt.Color(255, 255, 255));
+        BackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("BackGround2.png"))); // NOI18N
+        BackGround.setToolTipText("");
+        BackGround.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(137, 137, 137)
+                .addComponent(btnMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addComponent(lbIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(BackGround, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(btnMainMenu)
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addComponent(lbIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnMainMenu)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(BackGround, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
-
-        //pack();
-        //setLocationRelativeTo(null);
-        revalidate();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMainMenuActionPerformed
@@ -147,8 +165,10 @@ public class LearderBoardForm extends JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BackGround;
     private javax.swing.JButton btnMainMenu;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbIcon;
     private javax.swing.JTable learderboard;
     // End of variables declaration//GEN-END:variables
 }

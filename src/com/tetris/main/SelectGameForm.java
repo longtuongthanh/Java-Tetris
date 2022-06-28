@@ -36,16 +36,20 @@ public class SelectGameForm extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         btn1vs1 = new javax.swing.JButton();
         btnMainMenu = new javax.swing.JButton();
+        lbIcon = new javax.swing.JLabel();
+        BackGround = new javax.swing.JLabel();
 
-        //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        //setResizable(false);
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 102, 255));
         jLabel1.setText("Select mode");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setBackground(new java.awt.Color(102, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(153, 255, 102));
         jLabel2.setText("Singleplayer");
 
+        btnNormal.setBackground(new java.awt.Color(102, 255, 255));
+        btnNormal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNormal.setText("Normal");
         btnNormal.addActionListener(e -> {
         	//Long
@@ -53,16 +57,25 @@ public class SelectGameForm extends javax.swing.JPanel {
         		Tetris.Inst().onStartPressed.accept(Tetris.Inst().data);
         	//Long
         });
-
+        btnBlitz.setBackground(new java.awt.Color(102, 255, 255));
+        btnBlitz.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnBlitz.setText("Blitz");
 
+        btn40Lines.setBackground(new java.awt.Color(102, 255, 255));
+        btn40Lines.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn40Lines.setText("40 Lines");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Versus");
+        jLabel3.setBackground(new java.awt.Color(102, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(153, 255, 102));
+        jLabel3.setText("Multiplayer");
 
+        btn1vs1.setBackground(new java.awt.Color(102, 255, 255));
+        btn1vs1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn1vs1.setText("1 vs 1");
 
+        btnMainMenu.setBackground(new java.awt.Color(102, 255, 255));
+        btnMainMenu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnMainMenu.setText("Main Menu");
         btnMainMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,58 +83,78 @@ public class SelectGameForm extends javax.swing.JPanel {
             }
         });
 
+        lbIcon.setForeground(new java.awt.Color(255, 255, 255));
+        lbIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("Tetris resize.png"))); // NOI18N
+
+        BackGround.setForeground(new java.awt.Color(255, 255, 255));
+        BackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("BackGround2.png"))); // NOI18N
+        BackGround.setToolTipText("");
+        BackGround.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(196, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(187, 187, 187))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(206, 206, 206)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btn1vs1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn40Lines, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnBlitz, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnNormal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnMainMenu))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(220, 220, 220)
-                        .addComponent(jLabel3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(6, 6, 6)
+                .addComponent(btnMainMenu))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(153, 153, 153)
+                .addComponent(btnBlitz, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(153, 153, 153)
+                .addComponent(btn40Lines))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(136, 136, 136)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(155, 155, 155)
+                .addComponent(btn1vs1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(lbIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(jLabel1))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(153, 153, 153)
+                .addComponent(btnNormal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(BackGround)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnMainMenu)
-                .addGap(9, 9, 9)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(btnNormal)
-                .addGap(18, 18, 18)
-                .addComponent(btnBlitz)
-                .addGap(18, 18, 18)
-                .addComponent(btn40Lines)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(btn1vs1)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addGap(220, 220, 220)
+                .addComponent(btnMainMenu))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(406, 406, 406)
+                .addComponent(btnBlitz))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(438, 438, 438)
+                .addComponent(btn40Lines))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(482, 482, 482)
+                .addComponent(jLabel3))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(331, 331, 331)
+                .addComponent(jLabel2))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(519, 519, 519)
+                .addComponent(btn1vs1))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(lbIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(374, 374, 374)
+                .addComponent(btnNormal))
+            .addComponent(BackGround)
         );
-
-        //pack();
-        //setLocationRelativeTo(null);
-        validate();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMainMenuActionPerformed
@@ -165,6 +198,7 @@ public class SelectGameForm extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BackGround;
     private javax.swing.JButton btn1vs1;
     private javax.swing.JButton btn40Lines;
     private javax.swing.JButton btnBlitz;
@@ -173,5 +207,6 @@ public class SelectGameForm extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lbIcon;
     // End of variables declaration//GEN-END:variables
 }

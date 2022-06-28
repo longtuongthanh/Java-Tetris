@@ -28,15 +28,18 @@ public class StartupForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        label1 = new java.awt.Label();
         btnStart = new javax.swing.JButton();
         btnLearderboard = new javax.swing.JButton();
         btnQuit = new javax.swing.JButton();
         lbIcon = new javax.swing.JLabel();
+        BackGround = new javax.swing.JLabel();
         btnOption = new javax.swing.JButton();
 
-        //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        //setResizable(false);
+        label1.setText("label1");
 
+        btnStart.setBackground(new java.awt.Color(153, 255, 255));
+        btnStart.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnStart.setText("Start");
         btnStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -44,6 +47,8 @@ public class StartupForm extends javax.swing.JPanel {
             }
         });
 
+        btnLearderboard.setBackground(new java.awt.Color(153, 255, 255));
+        btnLearderboard.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLearderboard.setText("Learderboard");
         btnLearderboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,6 +56,8 @@ public class StartupForm extends javax.swing.JPanel {
             }
         });
 
+        btnQuit.setBackground(new java.awt.Color(153, 255, 255));
+        btnQuit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnQuit.setText("Quit");
         btnQuit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,10 +65,17 @@ public class StartupForm extends javax.swing.JPanel {
             }
         });
 
-        lbIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/Tetris resize.png"))); // NOI18N
-        lbIcon.setText("Icon");
+        lbIcon.setForeground(new java.awt.Color(255, 255, 255));
+        lbIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("Tetris resize.png"))); // NOI18N
 
-        btnOption.setText("Option");
+        BackGround.setForeground(new java.awt.Color(255, 255, 255));
+        BackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("BackGround2.png"))); // NOI18N
+        BackGround.setToolTipText("");
+        BackGround.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        btnOption.setBackground(new java.awt.Color(153, 255, 255));
+        btnOption.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnOption.setText("Options");
         btnOption.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOptionActionPerformed(evt);
@@ -73,46 +87,48 @@ public class StartupForm extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(59, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lbIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnQuit, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnLearderboard, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnOption, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(126, 126, 126))))
+                .addGap(50, 50, 50)
+                .addComponent(lbIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(btnOption, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(btnLearderboard, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(btnQuit, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(BackGround)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(lbIcon)
-                .addGap(18, 18, 18)
-                .addComponent(btnStart)
-                .addGap(18, 18, 18)
-                .addComponent(btnLearderboard)
-                .addGap(18, 18, 18)
-                .addComponent(btnOption)
-                .addGap(18, 18, 18)
-                .addComponent(btnQuit)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(lbIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(400, 400, 400)
+                .addComponent(btnOption))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(340, 340, 340)
+                .addComponent(btnLearderboard, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(280, 280, 280)
+                .addComponent(btnStart))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(460, 460, 460)
+                .addComponent(btnQuit))
+            .addComponent(BackGround)
         );
-
-        //pack();
-        revalidate();
-        //setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
     	this.setVisible(false);
-
-    	if (Tetris.Inst().onStartPressed != null)
-    		Tetris.Inst().onStartPressed.accept(Tetris.Inst().data);
-    	//Tetris.Inst().showSelectGame();
+    	
+    	Tetris.Inst().showSelectGame();
+       // Tetris.Inst().showSelectGame();
     }//GEN-LAST:event_btnStartActionPerformed
 
     private void btnLearderboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLearderboardActionPerformed
@@ -138,6 +154,8 @@ public class StartupForm extends javax.swing.JPanel {
         this.setVisible(false);
         Tetris.Inst().showOption();
     }//GEN-LAST:event_btnOptionActionPerformed
+
+
 
     /**
      * @param args the command line arguments
@@ -177,10 +195,12 @@ public class StartupForm extends javax.swing.JPanel {
     //*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BackGround;
     private javax.swing.JButton btnLearderboard;
+    private javax.swing.JButton btnOption;
     private javax.swing.JButton btnQuit;
     private javax.swing.JButton btnStart;
-    private javax.swing.JButton btnOption;
+    private java.awt.Label label1;
     private javax.swing.JLabel lbIcon;
     // End of variables declaration//GEN-END:variables
 }
