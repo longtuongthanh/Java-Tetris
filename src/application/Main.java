@@ -94,6 +94,7 @@ public class Main extends Application {
 			
 			primaryStage.setOnCloseRequest(a -> mechanic.close());
 			primaryStage.setResizable(false);
+			primaryStage.setTitle("Trò chơi xếp gạch");
 			//End Long
 		} catch(Exception e) {
 			e.printStackTrace();
