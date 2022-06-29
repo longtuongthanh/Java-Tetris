@@ -32,6 +32,21 @@ public class OptionForm extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         lbIcon = new javax.swing.JLabel();
         BackGround = new javax.swing.JLabel();
+        
+        jSlider1.addChangeListener(e -> {
+        	int value = jSlider1.getValue();
+        	
+        	Sound.Inst().SetVolumn(0, value);
+        	Sound.Inst().SetVolumn(1, value);
+        });
+        jSlider2.addChangeListener(e -> {
+        	int value = jSlider2.getValue();
+        	
+        	Sound.Inst().SetVolumn(2, value);
+        	Sound.Inst().SetVolumn(3, value);
+        });
+        jSlider1.setValue((int) (Sound.Inst().volumns[0] * 100));
+        jSlider2.setValue((int) (Sound.Inst().volumns[2] * 100));
 
         setPreferredSize(new java.awt.Dimension(400, 600));
 
