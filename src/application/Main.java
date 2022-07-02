@@ -54,6 +54,9 @@ public class Main extends Application {
 					mechanic.OnNewGame();
 				});
 			};
+			Tetris.Inst().setGameMode = mode -> {
+				mechanic.SetGameMode(mode);
+			};
 			
 			mechanic.SetOnNotifyBoardChanged(data -> {
 				Platform.runLater(() -> field.OnUpdate(data));

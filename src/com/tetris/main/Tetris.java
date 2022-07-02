@@ -4,6 +4,9 @@ import java.util.function.Consumer;
 
 import javax.swing.JOptionPane;
 
+import com.tetris.mechanic.GameData;
+import com.tetris.mechanic.GameMode;
+
 import javafx.embed.swing.SwingNode;
 
 public class Tetris {
@@ -12,6 +15,7 @@ public class Tetris {
     public Consumer<SaveData> onOptionsPressed;
     public Consumer<SaveData> onLeaderboardPressed;
     public Consumer<SaveData> onQuit;
+    public Consumer<GameMode> setGameMode;
     public SaveData data;
     //End Long
 

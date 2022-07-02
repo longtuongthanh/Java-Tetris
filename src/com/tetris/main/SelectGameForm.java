@@ -6,6 +6,8 @@ package com.tetris.main;
 
 import java.util.function.Consumer;
 
+import com.tetris.mechanic.GameMode;
+
 /**
  *
  * @author Nhan
@@ -55,6 +57,8 @@ public class SelectGameForm extends javax.swing.JPanel {
         	//Long
         	if (Tetris.Inst().onStartPressed != null)
         		Tetris.Inst().onStartPressed.accept(Tetris.Inst().data);
+        	if (Tetris.Inst().setGameMode != null)
+        		Tetris.Inst().setGameMode.accept(GameMode.Normal);
         	//Long
         });
         btnBlitz.setBackground(new java.awt.Color(102, 255, 255));
@@ -64,6 +68,15 @@ public class SelectGameForm extends javax.swing.JPanel {
         btn40Lines.setBackground(new java.awt.Color(102, 255, 255));
         btn40Lines.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn40Lines.setText("40 Lines");
+        
+        btn40Lines.addActionListener(e -> {
+        	// Long
+        	if (Tetris.Inst().onStartPressed != null)
+        		Tetris.Inst().onStartPressed.accept(Tetris.Inst().data);
+        	if (Tetris.Inst().setGameMode != null)
+        		Tetris.Inst().setGameMode.accept(GameMode.Line40);
+        	// Long
+        });
 
         jLabel3.setBackground(new java.awt.Color(102, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N

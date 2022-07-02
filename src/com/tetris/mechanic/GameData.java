@@ -14,6 +14,7 @@ public class GameData {
 	public List<List<TetrisPieceType>> grid;
 	public TetrisPiece next;
     public int score;
+    public GameMode gameMode;
 
     private TetrisPiece _tile;
 
@@ -42,6 +43,8 @@ public class GameData {
     public boolean gameOver = true;
 
 	public GameTimer timer;
+	public GameTimer second;
+	public int secondCount;
 
     public TetrisPiece getTile()
     {
@@ -150,6 +153,8 @@ public class GameData {
         TetrisPiece.ResetBag();
         GetNewTetrisPiece();
         timer.Reset();
+        second.Reset();
+        secondCount = 0;
         GetNewTetrisPiece();
     }
 }

@@ -18,7 +18,10 @@ public class GameMechanic implements AutoCloseable {
 	PlayerController controlMechanic;
 	
 	// CALLING TO OTHER CLASSES
-	public Consumer<GameData> onPause, onUnpause;
+	public Consumer<GameData> onPause, onUnpause, onSecondPass;
+	public void SetGameMode(GameMode mode) {
+		data.gameMode = mode;
+	}
 	public void SetOnNotifyBoardChanged(Consumer<GameData> notifyBoardChanged) {
 		controlMechanic.notifyBoardChanged = notifyBoardChanged;
 		dropdownMechanic.notifyBoardChanged = notifyBoardChanged;
@@ -52,6 +55,11 @@ public class GameMechanic implements AutoCloseable {
 			dropdownMechanic.PushDown(data);
 			if (data.gameOver)
 				data.timer.Stop();
+		});
+		data.second = new GameTimer(1, timer -> {
+			data.secondCount++;
+			if (this.onSecondPass != null)
+				this.onSecondPass.accept(data);
 		});
 		
 		final EventHandler<? super KeyEvent> prevHandler = scene.getOnKeyPressed();
