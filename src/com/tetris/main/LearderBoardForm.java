@@ -4,8 +4,12 @@
  */
 package com.tetris.main;
 
+import java.awt.Color;
+
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -54,7 +58,10 @@ public class LearderBoardForm extends JPanel {
                 btnMainMenuActionPerformed(evt);
             }
         });
-
+        JTableHeader Theader = learderboard.getTableHeader();
+        
+        Theader.setBackground(Color.GRAY);//thay doi mau nen 
+        Theader.setForeground(Color.MAGENTA);//thay doi mau chu
         learderboard.setBackground(new java.awt.Color(204, 255, 255));
         learderboard.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         learderboard.setModel(new javax.swing.table.DefaultTableModel(
